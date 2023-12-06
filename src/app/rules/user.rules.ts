@@ -15,7 +15,7 @@ const userSchema = z.object({
     .max(32, {
       message: "Mật khẩu dài tối đa 32 ký tự",
     }),
-  confirm_password: z.string(),
+  confirmPassword: z.string(),
 });
 
 export const registerSchema = userSchema
@@ -24,11 +24,11 @@ export const registerSchema = userSchema
     password: true,
   })
   .extend({
-    confirm_password: z.string(),
+    confirmPassword: z.string(),
   })
-  .refine((data) => data.password === data.confirm_password, {
+  .refine((data) => data.password === data.confirmPassword, {
     message: "Nhập lại mật khẩu không chính xác",
-    path: ["confirm_password"],
+    path: ["confirmPassword"],
   });
 
 export const loginSchema = userSchema.pick({
@@ -36,5 +36,12 @@ export const loginSchema = userSchema.pick({
   password: true,
 });
 
+export const logoutSchema = z.object({
+  refreshToken: z.string().min(1, {
+    message: "Refresh token là bắt buộc",
+  }),
+});
+
 export type RegisterSchema = z.infer<typeof registerSchema>;
 export type LoginSchema = z.infer<typeof loginSchema>;
+export type LogoutSchema = z.infer<typeof logoutSchema>;
