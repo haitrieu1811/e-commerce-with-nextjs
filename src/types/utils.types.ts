@@ -1,4 +1,9 @@
+import { TokenType } from "@/constants/enum";
+
 export type TokenPayload = {
-  user_id: string;
+  userId: string;
   role: string;
+  tokenType: TokenType;
+  iat: number;
+  exp: number;
 };

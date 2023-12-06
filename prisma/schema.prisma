@@ -32,3 +32,12 @@ enum UserStatus {
   ACTIVE
   INACTIVE
 }
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String
+  iat       DateTime
+  exp       DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

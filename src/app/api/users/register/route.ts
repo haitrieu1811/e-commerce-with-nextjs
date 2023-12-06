@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 import { registerSchema } from "@/app/rules/user.rules";
 import { hashPassword } from "@/lib/crypto";
-import prisma from "@/prisma/client";
+import prisma from "@/lib/prismaClient";
 
 export async function POST(request: NextRequest) {
   const body = await request.json();
